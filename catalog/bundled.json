@@ -42,7 +42,7 @@
         "Visualização 3D e coeficientes de rigidez",
         "Comparação de métodos e exportações"
       ],
-      "requirements": "Pacotes desktop em preparação. A disponibilidade será informada por sistema e arquitetura após a publicação e validação dos instaladores.",
+      "requirements": "Windows x86_64: instalador NSIS por usuário. Linux x86_64: AppImage; consulte as dependências e instruções de instalação na documentação.",
       "notice": "Aplicativo experimental. Consulte a documentação de métodos, validação e limites antes de utilizar seus resultados.",
       "releases": []
     }
