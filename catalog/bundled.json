@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "publishedAt": "2026-11-06T00:00:00Z",
+  "apps": [
+    {
+      "id": "consolostruct",
+      "name": "ConsoloStruct",
+      "tagline": "Do cálculo ao detalhe.",
+      "summary": "Cálculo e detalhamento de consolos de concreto armado, com memória rastreável e desenhos integrados.",
+      "description": "Defina a geometria, revise as verificações e explore o detalhamento da peça em um ambiente de trabalho integrado. Um aplicativo aberto para acompanhar as decisões de engenharia, do modelo às saídas do projeto.",
+      "category": "Concreto armado",
+      "icon": "consolostruct-atlas",
+      "color": "#FF8A3D",
+      "website": "https://openstruct.com.br/apps/consolostruct",
+      "repository": "https://github.com/ricardocorsini/consolo-struct",
+      "documentation": "https://github.com/ricardocorsini/consolo-struct#readme",
+      "features": [
+        "Geometria paramétrica e vistas 2D e 3D",
+        "Verificações e memória de cálculo por peça",
+        "Detalhamento, quadro de aço e exportações",
+        "Projetos locais e funcionamento independente"
+      ],
+      "requirements": "Pacotes desktop em preparação. A disponibilidade será informada por sistema e arquitetura após a publicação e validação dos instaladores.",
+      "notice": "Aplicativo em desenvolvimento. Consulte as hipóteses e os limites dos métodos na documentação do produto.",
+      "releases": []
+    },
+    {
+      "id": "molastruct",
+      "name": "MolaStruct",
+      "tagline": "Da sondagem ao apoio elástico.",
+      "summary": "Explore a rigidez do conjunto fundação e solo, com perfil SPT, visualização 3D e memória de cálculo.",
+      "description": "Investigue a influência do solo no apoio estrutural. Organize sondagens, defina sapatas ou blocos sobre estacas e compare estimativas de rigidez à translação e à rotação em um ambiente visual.",
+      "category": "Fundações",
+      "icon": "molastruct-gaia",
+      "color": "#3448D1",
+      "website": "https://openstruct.com.br/apps/molastruct",
+      "repository": "https://github.com/ricardocorsini/mola-struct",
+      "documentation": "https://github.com/ricardocorsini/mola-struct#readme",
+      "features": [
+        "Sapatas e blocos sobre 1 a 4 estacas",
+        "Sondagem SPT e camadas de solo",
+        "Visualização 3D e coeficientes de rigidez",
+        "Comparação de métodos e exportações"
+      ],
+      "requirements": "Pacotes desktop em preparação. A disponibilidade será informada por sistema e arquitetura após a publicação e validação dos instaladores.",
+      "notice": "Aplicativo experimental. Consulte a documentação de métodos, validação e limites antes de utilizar seus resultados.",
+      "releases": []
+    }
+  ]
+}

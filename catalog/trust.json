@@ -1,0 +1,19 @@
+{
+  "catalogUrl": "https://raw.githubusercontent.com/ricardocorsini/openstruct-catalog/main/catalog.signed.json",
+  "keys": {
+    "catalog-v1": "pvQL4rdeFWW/T+uG4ObGiZalkc+PF70CakS0Kt/0Hq4=",
+    "molastruct-packages-v1": "Z4awIRyFBb4v5KNh2FyqICIPkIIkY7Jf1qJfaORHT1U=",
+    "consolostruct-packages-v1": "EcKYvaqUSR7jZa8oNUZKkrQA90tlyhjuBCTaMbR0UA8=",
+    "launcher-packages-v1": "8vw4JME6xKS73F+I03HEqBmsInB1oGTWJlhFyT6BCnI="
+  },
+  "allowedHosts": [
+    "github.com",
+    "raw.githubusercontent.com",
+    "release-assets.githubusercontent.com",
+    "objects.githubusercontent.com",
+    "ricardocorsini.github.io",
+    "openstruct.com.br",
+    "www.openstruct.com.br",
+    "releases.openstruct.com.br"
+  ]
+}

@@ -1,0 +1,33 @@
+name: Synchronize signed catalog
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [openstruct-release-published]
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: signed-catalog
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: "main"
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: node scripts/distribution/sync-catalog.mjs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CATALOG_SIGNING_KEY: ${{ secrets.OPENSTRUCT_CATALOG_KEY }}
+      - name: Commit both public endpoints atomically
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/distribution/commit-catalog.mjs

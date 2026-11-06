@@ -1,0 +1,13 @@
+{
+  "name": "openstruct-distribution",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "semver": "7.8.6"
+  }
+}

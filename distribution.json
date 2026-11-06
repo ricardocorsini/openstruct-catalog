@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "hubRepo": "ricardocorsini/openstruct-catalog",
+  "hubBranch": "main",
+  "catalogKeyId": "catalog-v1",
+  "publicKeys": {
+    "catalog-v1": "pvQL4rdeFWW/T+uG4ObGiZalkc+PF70CakS0Kt/0Hq4=",
+    "molastruct-packages-v1": "Z4awIRyFBb4v5KNh2FyqICIPkIIkY7Jf1qJfaORHT1U=",
+    "consolostruct-packages-v1": "EcKYvaqUSR7jZa8oNUZKkrQA90tlyhjuBCTaMbR0UA8=",
+    "launcher-packages-v1": "8vw4JME6xKS73F+I03HEqBmsInB1oGTWJlhFyT6BCnI="
+  },
+  "tauriPublicKey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IERFQTcxQTczRUVDNjM1OTUKUldTVk5jYnVjeHFuM3VwRXFLNnFpcitjNlR4eFdnQkdKVVF2eWNoREpWVmxaTXRleEVFVnlrSDYK",
+  "products": [
+    {
+      "id": "molastruct",
+      "name": "MolaStruct",
+      "sourceRepo": "ricardocorsini/mola-struct",
+      "releaseRepo": "ricardocorsini/mola-struct",
+      "keyId": "molastruct-packages-v1"
+    },
+    {
+      "id": "consolostruct",
+      "name": "ConsoloStruct",
+      "sourceRepo": "ricardocorsini/consolo-struct",
+      "releaseRepo": "ricardocorsini/consolo-struct",
+      "keyId": "consolostruct-packages-v1"
+    },
+    {
+      "id": "launcher",
+      "name": "Struct Launcher",
+      "sourceRepo": "ricardocorsini/launcher-struct",
+      "releaseRepo": "ricardocorsini/openstruct-catalog",
+      "keyId": "launcher-packages-v1"
+    }
+  ]
+}

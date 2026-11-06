@@ -1,0 +1,128 @@
+name: Publish an OpenStruct product
+on:
+  workflow_call:
+    inputs:
+      product-id:
+        type: string
+        required: true
+      tag:
+        type: string
+        required: true
+      distribution-repo:
+        type: string
+        required: true
+      tooling-ref:
+        type: string
+        required: true
+    secrets:
+      package-signing-key:
+        required: true
+      distribution-token:
+        required: false
+      tauri-signing-key:
+        required: false
+      tauri-signing-password:
+        required: false
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ github.repository }}-${{ inputs.tag }}
+  cancel-in-progress: false
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            bundles: appimage
+          - os: windows-latest
+            bundles: nsis
+    runs-on: ${{ matrix.os }}
+    env:
+      PRODUCT_ID: ${{ inputs.product-id }}
+      RELEASE_TAG: ${{ inputs.tag }}
+      DISTRIBUTION_REPO: ${{ inputs.distribution-repo }}
+      STRUCT_LAUNCHER_UPDATE_URL: ${{ vars.STRUCT_LAUNCHER_UPDATE_URL }}
+      STRUCT_LAUNCHER_UPDATE_PUBKEY: ${{ vars.STRUCT_LAUNCHER_UPDATE_PUBKEY }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ inputs.tag }}
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: ${{ inputs.distribution-repo }}
+          ref: ${{ inputs.tooling-ref }}
+          path: .openstruct-tools
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --prefix .openstruct-tools
+      - name: Check publication prerequisites before compiling
+        run: node .openstruct-tools/scripts/distribution/preflight.mjs
+        env:
+          MIRROR_TOKEN_PRESENT: ${{ secrets.distribution-token != '' }}
+          TAURI_KEY_PRESENT: ${{ secrets.tauri-signing-key != '' }}
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            . -> target
+            src-tauri -> target
+            crates/molas-core -> target
+      - name: Linux prerequisites
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf
+      - run: node .openstruct-tools/scripts/distribution/prepare.mjs
+      - run: npm ci
+      - run: npm run check --if-present
+      - run: npm run test:core --if-present
+      - name: Build both supported package formats
+        run: npm run desktop:build -- --bundles ${{ matrix.bundles }} --config .openstruct-release-config.json
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.tauri-signing-key }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.tauri-signing-password }}
+          APPIMAGE_EXTRACT_AND_RUN: '1'
+      - run: node .openstruct-tools/scripts/distribution/collect.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: package-${{ runner.os }}
+          path: release-output/
+          if-no-files-found: error
+          retention-days: 7
+  publish:
+    needs: build
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    env:
+      PRODUCT_ID: ${{ inputs.product-id }}
+      RELEASE_TAG: ${{ inputs.tag }}
+      DISTRIBUTION_REPO: ${{ inputs.distribution-repo }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: ${{ inputs.distribution-repo }}
+          ref: ${{ inputs.tooling-ref }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: package-*
+          path: release-output
+          merge-multiple: true
+      - name: Validate, sign and publish the complete release
+        run: node scripts/distribution/publish.mjs
+        env:
+          GH_TOKEN: ${{ inputs.product-id == 'launcher' && secrets.distribution-token || github.token }}
+          DISTRIBUTION_TOKEN: ${{ secrets.distribution-token }}
+          PACKAGE_SIGNING_KEY: ${{ secrets.package-signing-key }}
