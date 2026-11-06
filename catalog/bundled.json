@@ -45,6 +45,28 @@
       "requirements": "Windows x86_64: instalador NSIS por usuário. Linux x86_64: AppImage; consulte as dependências e instruções de instalação na documentação.",
       "notice": "Aplicativo experimental. Consulte a documentação de métodos, validação e limites antes de utilizar seus resultados.",
       "releases": []
+    },
+    {
+      "id": "armadurastruct",
+      "name": "ArmaduraStruct",
+      "tagline": "Da fôrma ao aço.",
+      "summary": "CAD para detalhar armaduras, com máscaras DXF e DWG, estribos e quadro de aço automático.",
+      "description": "Desenhe barras e estribos, acompanhe a fôrma com cobrimento e crie vistas rebatidas vinculadas. Organize posições, quantidades e comprimentos no mesmo projeto, com exportação DXF, PDF e CSV.",
+      "category": "Detalhamento",
+      "icon": "openstruct-mark",
+      "color": "#F4C95D",
+      "website": "https://openstruct.com.br/apps/armadurastruct",
+      "repository": "https://github.com/ricardocorsini/armadura-struct",
+      "documentation": "https://github.com/ricardocorsini/armadura-struct/blob/master/docs/GUIA.md",
+      "features": [
+        "Editor CAD 2D com snap, pan, zoom e comandos",
+        "Barras, estribos, distribuição e vistas rebatidas",
+        "Máscaras DXF e DWG processadas localmente",
+        "Quadro de aço vinculado e exportações DXF, PDF e CSV"
+      ],
+      "requirements": "Windows x86_64: instalador NSIS por usuário. Linux x86_64: AppImage.",
+      "notice": "Primeira versão de detalhamento. Comprimentos geométricos; não realiza dimensionamento ou verificações normativas de armaduras.",
+      "releases": []
     }
   ]
 }

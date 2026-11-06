@@ -1,3 +1,4 @@
+import { productReleaseTag } from './source.mjs';
 import assert from 'node:assert/strict';
 import { prerelease, rcompare, valid } from 'semver';
 import {
@@ -73,9 +74,13 @@ export function verifyRelease(envelope, release, product, trust) {
   assert.equal(manifest.schemaVersion, 1);
   assert.equal(manifest.appId, product.id);
   assert.equal(manifest.sourceRepo, product.sourceRepo);
+  if (product.publisherRepo) {
+    assert.equal(manifest.publisherRepo, product.publisherRepo, 'Publicador divergente');
+    assert.match(manifest.sourceCommit ?? '', /^[a-f0-9]{40}$/, 'Commit de origem ausente');
+  }
   const version = versionFromTag(manifest.tag);
   assert.equal(manifest.version, version);
-  assert.equal(release.tag_name, releaseTag(product.id, manifest.tag));
+  assert.equal(release.tag_name, productReleaseTag(product, manifest.tag));
   assert.equal(manifest.channel, channelFor(version));
   assert.equal(Boolean(release.prerelease), manifest.channel === 'beta');
   assert.ok(Number.isFinite(Date.parse(release.published_at)), 'Data de publicação inválida');

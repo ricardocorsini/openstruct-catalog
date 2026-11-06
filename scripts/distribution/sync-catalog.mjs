@@ -1,3 +1,4 @@
+import { belongsToProduct } from './source.mjs';
 import assert from 'node:assert/strict';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import {
@@ -40,7 +41,7 @@ for (const product of config.products) {
     const metadata = release.assets.filter((asset) => asset.name === 'openstruct-release.json');
     // Existing manual releases without OpenStruct metadata are intentionally not offered.
     if (!metadata.length) continue;
-    if (product.id === 'launcher' && !release.tag_name.startsWith('launcher-v')) continue;
+    if (!belongsToProduct(product, release.tag_name)) continue;
     assert.equal(metadata.length, 1, 'Metadados duplicados');
     assert.equal(metadata[0].state, 'uploaded');
     assert.ok(metadata[0].size < 500000);

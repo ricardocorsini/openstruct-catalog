@@ -1,3 +1,4 @@
+import { authorizeSource, productReleaseTag } from './source.mjs';
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
@@ -8,7 +9,7 @@ const toolsRoot = fileURLToPath(new URL('../../', import.meta.url));
 const config = JSON.parse(await readFile(join(toolsRoot, 'distribution.json'), 'utf8'));
 const product = config.products.find((product) => product.id === process.env.PRODUCT_ID);
 assert.ok(product, 'Produto não cadastrado');
-assert.equal(process.env.GITHUB_REPOSITORY, product.sourceRepo, 'Repositório não autorizado');
+authorizeSource(product, process.env);
 assert.equal(process.env.DISTRIBUTION_REPO, config.hubRepo);
 const tag = process.env.RELEASE_TAG;
 const version = versionFromTag(tag);
@@ -26,7 +27,8 @@ const plan = {
   ...product,
   version,
   tag,
-  releaseTag: releaseTag(product.id, tag),
+  releaseTag: productReleaseTag(product, tag),
+  ...(product.publisherRepo ? { sourceCommit: process.env.SOURCE_COMMIT } : {}),
   channel: channelFor(version),
   executable: `${binary}.exe`,
 };

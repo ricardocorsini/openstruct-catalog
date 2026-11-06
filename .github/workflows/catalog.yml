@@ -1,5 +1,8 @@
 name: Synchronize signed catalog
 on:
+  push:
+    branches: [main]
+    paths: [distribution.json, catalog/bundled.json, scripts/**, .github/workflows/catalog.yml]
   workflow_dispatch:
   repository_dispatch:
     types: [openstruct-release-published]

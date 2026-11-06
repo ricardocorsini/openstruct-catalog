@@ -31,6 +31,14 @@
       "sourceRepo": "ricardocorsini/launcher-struct",
       "releaseRepo": "ricardocorsini/openstruct-catalog",
       "keyId": "launcher-packages-v1"
+    },
+    {
+      "id": "armadurastruct",
+      "name": "ArmaduraStruct",
+      "sourceRepo": "ricardocorsini/armadura-struct",
+      "publisherRepo": "ricardocorsini/launcher-struct",
+      "releaseRepo": "ricardocorsini/openstruct-catalog",
+      "keyId": "launcher-packages-v1"
     }
   ]
 }

@@ -1,3 +1,4 @@
+import { authorizeSource, productReleaseTag } from './source.mjs';
 import assert from 'node:assert/strict';
 import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -13,7 +14,7 @@ const trust = JSON.parse(
 );
 const product = config.products.find((product) => product.id === process.env.PRODUCT_ID);
 assert.ok(product);
-assert.equal(process.env.GITHUB_REPOSITORY, product.sourceRepo);
+authorizeSource(product, process.env);
 assert.equal(process.env.DISTRIBUTION_REPO, config.hubRepo);
 const expectedVersion = versionFromTag(process.env.RELEASE_TAG);
 requireSigningKey(process.env.PACKAGE_SIGNING_KEY, product.keyId, trust);
@@ -29,7 +30,11 @@ for (const key of ['id', 'sourceRepo', 'releaseRepo', 'keyId'])
   assert.equal(plan[key], product[key]);
 assert.equal(plan.tag, process.env.RELEASE_TAG);
 assert.equal(plan.version, expectedVersion);
-assert.equal(plan.releaseTag, product.id === 'launcher' ? `launcher-${plan.tag}` : plan.tag);
+assert.equal(plan.releaseTag, productReleaseTag(product, plan.tag));
+if (product.publisherRepo) {
+  assert.equal(plan.publisherRepo, product.publisherRepo);
+  assert.equal(plan.sourceCommit, process.env.SOURCE_COMMIT);
+}
 assert.equal(plan.channel, expectedVersion.includes('-') ? 'beta' : 'stable');
 const files = await readdir(directory);
 const assets = [];
@@ -82,6 +87,9 @@ const manifest = {
   appId: product.id,
   sourceRepo: product.sourceRepo,
   version: plan.version,
+  ...(product.publisherRepo
+    ? { sourceCommit: plan.sourceCommit, publisherRepo: product.publisherRepo }
+    : {}),
   tag: plan.tag,
   channel: plan.channel,
   notes: release.body || `${product.name} ${plan.version}`,
