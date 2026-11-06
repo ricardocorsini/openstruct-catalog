@@ -20,7 +20,7 @@
         "Detalhamento, quadro de aço e exportações",
         "Projetos locais e funcionamento independente"
       ],
-      "requirements": "Pacotes desktop em preparação. A disponibilidade será informada por sistema e arquitetura após a publicação e validação dos instaladores.",
+      "requirements": "Windows x86_64: instalador NSIS por usuário. Linux x86_64: AppImage; consulte as dependências e instruções de instalação na documentação.",
       "notice": "Aplicativo em desenvolvimento. Consulte as hipóteses e os limites dos métodos na documentação do produto.",
       "releases": []
     },
