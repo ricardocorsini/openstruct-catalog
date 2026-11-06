@@ -1,15 +1,15 @@
 {
-  "version": "0.2.3",
-  "notes": "Versão 0.2.3 de Struct Launcher.\n\nCódigo: https://github.com/ricardocorsini/launcher-struct/tree/v0.2.3",
-  "pub_date": "2026-11-06T20:26:34Z",
+  "version": "0.2.4",
+  "notes": "Versão 0.2.4 de Struct Launcher.\n\nCódigo: https://github.com/ricardocorsini/launcher-struct/tree/v0.2.4",
+  "pub_date": "2026-11-06T20:34:09Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTVk5jYnVjeHFuM21zSWpmSzZUY05aNUpneG9yYU1XcG5janNLczlyNTFWaW5CVHRNeVVtOUFhajV0RUhhSWpjRkNjTzcvd281cGFLY01UbzF2ZGdrT1kwMFF2UW1ZWUFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzOTk2NTExCWZpbGU6U3RydWN0IExhdW5jaGVyXzAuMi4zX3g2NC1zZXR1cC5leGUJdmVyc2lvbjowLjIuMwpRbWtkSEJIK09YMFNmaTM1SnNJNFlzREF6b1lTMGczZnNRMGJIUE5NZ281ejYxeit6OUZoMmlISnJaRlZUNllBcHJYSFZoK3hLeW1EZ3NkL2czV3VBZz09Cg==",
-      "url": "https://github.com/ricardocorsini/openstruct-catalog/releases/download/launcher-v0.2.3/launcher-0.2.3-windows-x86_64.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTVk5jYnVjeHFuM3ZCUUZZclpJS1k3OERjREdUelB5ckh5bkNqOEhwdmp3M1poKysvMVhZZU5IdnhqU1A3TzdvRXM5K296bGtoSTZKTDhSQTkrUTBNOExaRFpTcVhFVUE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzOTk3MjE2CWZpbGU6U3RydWN0IExhdW5jaGVyXzAuMi40X3g2NC1zZXR1cC5leGUJdmVyc2lvbjowLjIuNAp4b1dpVmxaaE1pUVVzSzJsQWR3cityd01SeWxtZUtPcG9oYkRYQlpYYk82enU4T3FGS01aZHErYy9YU1dRRnZxcHRIVnhYcEk0NW91NDR4ZStaNG1BUT09Cg==",
+      "url": "https://github.com/ricardocorsini/openstruct-catalog/releases/download/launcher-v0.2.4/launcher-0.2.4-windows-x86_64.exe"
     },
     "linux-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTVk5jYnVjeHFuM2p5WFF3ZTdzZ2o0c0VpM0ZIMTNRRmlFM0E5VkZxcjlRcmpDWWRWL1EvZlFZeHgrMERRdVZGNVNZVHV5S2U2c3cveXhESUNOTXRad1NWWEswQW1XMEFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzOTk2NzY4CWZpbGU6U3RydWN0IExhdW5jaGVyXzAuMi4zX2FtZDY0LkFwcEltYWdlCXZlcnNpb246MC4yLjMKR2Z6TitJTFVIWXcvQkJhbVBsQ2sxZmV4QTB6M1g5V0V4Rk00WUp1QU4zd25JY2FnUjduNzB6S25jMFpxSUh2eFI2UlhsamUzamlZMFg1R1NQcW00Q1E9PQo=",
-      "url": "https://github.com/ricardocorsini/openstruct-catalog/releases/download/launcher-v0.2.3/launcher-0.2.3-linux-x86_64.AppImage"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTVk5jYnVjeHFuM2lxRlcwNU1IbWliZW5HM25hb09hdFZhWk9VcFNUQXhZdUdQV3Y3QThqcVdIRzNpalBLeGdUaENoUmNYNWJEVk82bkMrN3JqRk9HTXc4S2hMWmQ0ZmdZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzOTk3MTIxCWZpbGU6U3RydWN0IExhdW5jaGVyXzAuMi40X2FtZDY0LkFwcEltYWdlCXZlcnNpb246MC4yLjQKVTZWLzZraU95ZnM1R2ZPS3JrREgvNDhXUGhBUi90dEtOcDBIVENpZnU4MjhYM1NMUllCRXJnUGkyWFQrUVgzdVo0eGtCdGhwNkdEVmVCb0VBZHE2Qmc9PQo=",
+      "url": "https://github.com/ricardocorsini/openstruct-catalog/releases/download/launcher-v0.2.4/launcher-0.2.4-linux-x86_64.AppImage"
     }
   }
 }
