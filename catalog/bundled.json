@@ -76,8 +76,8 @@
       "description": "Organize sondagens e estacas, compatibilize os perfis e compare a capacidade de carga em diferentes modos de cálculo, com memoriais e exportações locais.",
       "category": "Fundações",
       "icon": "openstruct-mark",
-      "color": "#1E293B",
-      "website": "https://openstruct.com.br",
+      "color": "#238A74",
+      "website": "https://openstruct.com.br/apps/geosptstruct",
       "repository": "https://github.com/itanervale/GEOSPT-STRUCT",
       "documentation": "https://github.com/itanervale/GEOSPT-STRUCT/blob/main/docs/DESKTOP.md",
       "features": [
