@@ -67,6 +67,28 @@
       "requirements": "Windows x86_64: instalador NSIS por usuário. Linux x86_64: AppImage.",
       "notice": "Primeira versão de detalhamento. Comprimentos geométricos; não realiza dimensionamento ou verificações normativas de armaduras.",
       "releases": []
+    },
+    {
+      "id": "geosptstruct",
+      "name": "GeoSPT",
+      "tagline": "Da sondagem à capacidade de carga.",
+      "summary": "Análise SPT e capacidade de carga de estacas pelos métodos Décourt-Quaresma e Aoki-Velloso.",
+      "description": "Organize sondagens e estacas, compatibilize os perfis e compare a capacidade de carga em diferentes modos de cálculo, com memoriais e exportações locais.",
+      "category": "Fundações",
+      "icon": "openstruct-mark",
+      "color": "#1E293B",
+      "website": "https://openstruct.com.br",
+      "repository": "https://github.com/itanervale/GEOSPT-STRUCT",
+      "documentation": "https://github.com/itanervale/GEOSPT-STRUCT/blob/main/docs/DESKTOP.md",
+      "features": [
+        "Cadastro e compatibilização de sondagens SPT",
+        "Capacidade de carga por Décourt-Quaresma e Aoki-Velloso",
+        "Comparação de modos e transferência de carga",
+        "Relatórios e exportações JSON, XLSX e HTML/PDF"
+      ],
+      "requirements": "Windows x86_64: instalador NSIS por usuário. Linux x86_64: AppImage; consulte as dependências do sistema na documentação.",
+      "notice": "Consulte as hipóteses, os coeficientes e os limites dos métodos e confira os resultados antes do uso em projeto.",
+      "releases": []
     }
   ]
 }

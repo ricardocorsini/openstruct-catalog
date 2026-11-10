@@ -39,6 +39,14 @@
       "publisherRepo": "ricardocorsini/launcher-struct",
       "releaseRepo": "ricardocorsini/openstruct-catalog",
       "keyId": "launcher-packages-v1"
+    },
+    {
+      "id": "geosptstruct",
+      "name": "GeoSPT",
+      "sourceRepo": "itanervale/GEOSPT-STRUCT",
+      "publisherRepo": "ricardocorsini/launcher-struct",
+      "releaseRepo": "ricardocorsini/openstruct-catalog",
+      "keyId": "launcher-packages-v1"
     }
   ]
 }
