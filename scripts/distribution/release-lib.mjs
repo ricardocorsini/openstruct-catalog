@@ -20,6 +20,17 @@ export function versionFromTag(tag) {
   return version;
 }
 
+// Notes are data from the tagged source, never executable code or mutable draft text.
+export function releaseNotes(text) {
+  assert.equal(typeof text, 'string', 'Notas da release ausentes no plano');
+  const notes = text.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n').trim();
+  assert.ok(notes.length > 0, 'Notas da release vazias');
+  assert.ok(!/^(?:[#* _-]*)(?:todo|tbd|placeholder|em breve|a definir|a preencher|notas pendentes)(?:[.!* _-]*)$/im.test(notes), 'Substitua os placeholders pelas notas reais da release');
+  assert.ok(notes.length <= 50000, 'Notas da release excedem 50000 caracteres');
+  assert.ok(!/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(notes), 'Notas da release contêm caracteres de controle');
+  return notes;
+}
+
 export const releaseTag = (id, tag) => (id === 'launcher' ? `launcher-${tag}` : tag);
 export const channelFor = (version) => (prerelease(version) ? 'beta' : 'stable');
 

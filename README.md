@@ -14,9 +14,20 @@ Nunca inclua chaves privadas neste repositório. Não substitua arquivos de uma 
 Use uma nova versão/tag. Releases sem `openstruct-release.json` assinado não entram no catálogo.
 As URLs de download são públicas e não exigem login nem token no computador do usuário.
 
-Uma release somente é publicada depois que ambos os builds terminam. Notas de uma release
-podem ser preparadas em um rascunho antes de disparar a tag. O manifesto assinado registra
-essas notas; alterar o texto depois de publicar não modifica o catálogo já assinado.
+Uma release somente é publicada depois que ambos os builds terminam. Antes de criar a tag,
+versione as notas em português no repositório de código em `.github/release-notes/vX.Y.Z.md`
+(por exemplo, `.github/release-notes/v0.7.0.md`; para beta, `v0.7.0-beta.1.md`).
+O arquivo é obrigatório, deve conter Markdown não vazio e ter até 50.000 caracteres.
+O preparo normaliza BOM, quebras de linha e espaços nas extremidades; o plano acompanha
+os artefatos Windows e Linux, que precisam ter notas idênticas. O publicador valida o texto
+novamente e o utiliza como descrição da release e como `manifest.notes` antes da assinatura.
+Notas são apenas dados: nenhum código da fonte é executado pelo job de publicação.
+
+Rascunhos existentes não definem as notas: seu texto é atualizado ao concluir a publicação.
+Uploads existentes continuam sujeitos à conferência de hash, sem substituição; se um rascunho
+já contém um manifesto com outras notas, remova apenas o rascunho ou use uma nova versão.
+Nunca edite o manifesto assinado ou os instaladores publicados. Alterar apenas o texto no GitHub
+depois de publicar não modifica as notas do catálogo ou do feed do Launcher.
 
 Os horários do GitHub Actions são aproximados e podem sofrer atrasos. Repositórios públicos
 sem atividade por 60 dias podem ter workflows agendados desabilitados pelo GitHub: confira

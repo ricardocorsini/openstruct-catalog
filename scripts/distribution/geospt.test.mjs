@@ -67,7 +67,7 @@ function releaseFixture() {
     tag: "v2.0.7",
     version: "2.0.7",
     channel: "stable",
-    notes: "GeoSPT 2.0.7",
+    notes: "## GeoSPT 2.0.7\n\n- Correção da seção e atualização das verificações.",
     assets,
   };
   return { pem, trust, release, manifest };
@@ -114,6 +114,7 @@ test("pacotes GeoSPT assinados dos dois sistemas entram no catálogo existente",
   );
   const app = catalog.apps.find((item) => item.id === product.id);
   assert.equal(app.releases[0].version, "2.0.7");
+  assert.equal(app.releases[0].notes, f.manifest.notes);
   assert.equal(
     app.releases[0].assets.find((item) => item.platform === "windows")
       .executable,

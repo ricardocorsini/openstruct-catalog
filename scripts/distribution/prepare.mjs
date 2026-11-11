@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { channelFor, releaseTag, tauriReleaseConfig, versionFromTag } from './release-lib.mjs';
+import { channelFor, releaseNotes, tauriReleaseConfig, versionFromTag } from './release-lib.mjs';
 
 const toolsRoot = fileURLToPath(new URL('../../', import.meta.url));
 const config = JSON.parse(await readFile(join(toolsRoot, 'distribution.json'), 'utf8'));
@@ -27,6 +27,7 @@ const plan = {
   ...product,
   version,
   tag,
+  notes: releaseNotes(await readFile(join(root, '.github/release-notes', `${tag}.md`), 'utf8')),
   releaseTag: productReleaseTag(product, tag),
   ...(product.publisherRepo ? { sourceCommit: process.env.SOURCE_COMMIT } : {}),
   channel: channelFor(version),

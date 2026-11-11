@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { packageMessage, sha256, signBytes } from '../security.mjs';
-import { missingUploads, requireSigningKey, seal, versionFromTag } from './release-lib.mjs';
+import { missingUploads, releaseNotes, requireSigningKey, seal, versionFromTag } from './release-lib.mjs';
 import { api, gh } from './github.mjs';
 
 const config = JSON.parse(
@@ -26,6 +26,7 @@ const plans = await Promise.all(
 );
 assert.deepEqual(plans[0], plans[1], 'Os dois builds precisam vir da mesma versão');
 const plan = plans[0];
+const notes = releaseNotes(plan.notes);
 for (const key of ['id', 'sourceRepo', 'releaseRepo', 'keyId'])
   assert.equal(plan[key], product[key]);
 assert.equal(plan.tag, process.env.RELEASE_TAG);
@@ -80,7 +81,7 @@ if (!release)
     ...(product.sourceRepo === product.releaseRepo
       ? { target_commitish: process.env.GITHUB_SHA }
       : {}),
-    body: `Versão ${plan.version} de ${product.name}.\n\nCódigo: https://github.com/${product.sourceRepo}/tree/${plan.tag}`,
+    body: notes,
   });
 const manifest = {
   schemaVersion: 1,
@@ -92,7 +93,7 @@ const manifest = {
     : {}),
   tag: plan.tag,
   channel: plan.channel,
-  notes: release.body || `${product.name} ${plan.version}`,
+  notes,
   assets,
 };
 const metadataPath = join(directory, 'openstruct-release.json');
@@ -133,6 +134,7 @@ if (missing.length)
 assert.equal(api(`repos/${product.releaseRepo}/releases/${release.id}`).draft, true);
 api(`repos/${product.releaseRepo}/releases/${release.id}`, 'PATCH', {
   draft: false,
+  body: notes,
   prerelease: plan.channel === 'beta',
 });
 console.log(`Publicada: https://github.com/${product.releaseRepo}/releases/tag/${plan.releaseTag}`);
