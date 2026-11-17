@@ -89,6 +89,28 @@
       "requirements": "Windows x86_64: instalador NSIS por usuário. Linux x86_64: AppImage; consulte as dependências do sistema na documentação.",
       "notice": "Consulte as hipóteses, os coeficientes e os limites dos métodos e confira os resultados antes do uso em projeto.",
       "releases": []
+    },
+    {
+      "id": "geostruct",
+      "name": "GeoStruct",
+      "tagline": "Da seção ao modelo geotécnico.",
+      "summary": "Modelagem geotécnica 2D de taludes, com materiais, água, cargas e casos de análise.",
+      "description": "Prepare seções e cenários, confira os lançamentos e salve projetos locais. Primeira distribuição de modelagem, ainda sem motor de estabilidade.",
+      "category": "Geotecnia",
+      "icon": "openstruct-mark",
+      "color": "#3448D1",
+      "website": "https://github.com/ricardocorsini/geo-struct",
+      "repository": "https://github.com/ricardocorsini/geo-struct",
+      "documentation": "https://github.com/ricardocorsini/geo-struct/blob/master/docs/DESKTOP.md",
+      "features": [
+        "Editor de seções e regiões de solo",
+        "Materiais, água e sobrecargas por cenário",
+        "Casos e conferência integrada dos lançamentos",
+        "Projetos locais, histórico e relatório de entradas"
+      ],
+      "requirements": "Windows x86_64 com WebView2: NSIS por usuário. Linux x86_64: AppImage, base Ubuntu 22.04.",
+      "notice": "Versão de modelagem: não calcula FS, não verifica admissibilidade das superfícies e não dimensiona contenções. Ícone provisório.",
+      "releases": []
     }
   ]
 }
