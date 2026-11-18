@@ -93,9 +93,9 @@
     {
       "id": "geostruct",
       "name": "GeoStruct",
-      "tagline": "Da seção ao modelo geotécnico.",
-      "summary": "Modelagem geotécnica 2D de taludes, com materiais, água, cargas e casos de análise.",
-      "description": "Prepare seções e cenários, confira os lançamentos e salve projetos locais. Primeira distribuição de modelagem, ainda sem motor de estabilidade.",
+      "tagline": "Da seção à estabilidade do talude.",
+      "summary": "Modelagem geotécnica 2D e análise circular de estabilidade de taludes.",
+      "description": "Modele seções e condições de água e carga. Avalie círculos fixos ou explore uma malha de superfícies com Fellenius e Bishop Simplificado.",
       "category": "Geotecnia",
       "icon": "openstruct-mark",
       "color": "#3448D1",
@@ -103,13 +103,13 @@
       "repository": "https://github.com/ricardocorsini/geo-struct",
       "documentation": "https://github.com/ricardocorsini/geo-struct/blob/master/docs/DESKTOP.md",
       "features": [
-        "Editor de seções e regiões de solo",
-        "Materiais, água e sobrecargas por cenário",
-        "Casos e conferência integrada dos lançamentos",
-        "Projetos locais, histórico e relatório de entradas"
+        "Editor de seções, materiais, água e sobrecargas",
+        "Fellenius e Bishop Simplificado em círculo fixo",
+        "Busca circular com inspeção e refinamento das fatias",
+        "Projeto padrão de talude pronto para calcular"
       ],
       "requirements": "Windows x86_64 com WebView2: NSIS por usuário. Linux x86_64: AppImage, base Ubuntu 22.04.",
-      "notice": "Versão de modelagem: não calcula FS, não verifica admissibilidade das superfícies e não dimensiona contenções. Ícone provisório.",
+      "notice": "O menor FS depende das superfícies admissíveis da malha e das hipóteses do caso. Confira as parcelas por fatia e os diagnósticos.",
       "releases": []
     }
   ]
