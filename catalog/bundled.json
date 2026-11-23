@@ -111,6 +111,28 @@
       "requirements": "Windows x86_64 com WebView2: NSIS por usuário. Linux x86_64: AppImage, base Ubuntu 22.04.",
       "notice": "O menor FS depende das superfícies admissíveis da malha e das hipóteses do caso. Confira as parcelas por fatia e os diagnósticos.",
       "releases": []
+    },
+    {
+      "id": "kstruct",
+      "name": "KStruct",
+      "tagline": "Do lançamento aos esforços.",
+      "summary": "Modelagem e análise estática linear de pórticos planos e espaciais.",
+      "description": "Lance a estrutura por eixos e pavimentos, atribua apoios e cargas, e analise cada caso com o OOFEM 3.0 integrado. Consulte a deformada, as reações e os esforços por barra.",
+      "category": "Análise estrutural",
+      "icon": "openstruct-mark",
+      "color": "#3448D1",
+      "website": "https://openstruct.com.br/apps/kstruct",
+      "repository": "https://github.com/ricardocorsini/k-struct",
+      "documentation": "https://github.com/ricardocorsini/k-struct/blob/v0.3.0/README.md",
+      "features": [
+        "Lançamento em planta e elevações com perspectiva 3D",
+        "Padrões de carga e casos de análise estática linear",
+        "Deformada, reações, diagramas e tabelas com exportação CSV",
+        "OOFEM 3.0 integrado e projetos locais"
+      ],
+      "requirements": "Windows x86_64: NSIS por usuário com WebView2 offline. Linux x86_64: AppImage, base Ubuntu 22.04.",
+      "notice": "Primeira distribuição alpha para avaliação. Use os modelos de referência e confira as hipóteses, as unidades e os resultados.",
+      "releases": []
     }
   ]
 }
