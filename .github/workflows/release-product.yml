@@ -44,7 +44,7 @@ jobs:
             bundles: appimage
           - os: windows-latest
             bundles: nsis
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ inputs.product-id == 'kstruct' && matrix.os == 'windows-latest' && 'windows-2025-vs2026' || matrix.os }}
     env:
       PRODUCT_ID: ${{ inputs.product-id }}
       SOURCE_REPOSITORY: ${{ inputs.source-repository || github.repository }}
@@ -77,6 +77,8 @@ jobs:
           MIRROR_TOKEN_PRESENT: ${{ secrets.distribution-token != '' }}
           TAURI_KEY_PRESENT: ${{ secrets.tauri-signing-key != '' }}
       - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: ${{ inputs.product-id == 'kstruct' && '1.100.0' || 'stable' }}
       - uses: swatinem/rust-cache@v2
         with:
           workspaces: |
@@ -91,16 +93,38 @@ jobs:
         run: |
           sudo -E apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 update
           sudo -E apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf
+          if [[ "$PRODUCT_ID" == kstruct ]]; then
+            sudo -E apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install -y build-essential libssl-dev ninja-build libfuse2
+          fi
       - run: node .openstruct-tools/scripts/distribution/prepare.mjs
       - run: npm ci
       - run: npm run check --if-present
       - run: npm run test:core --if-present
       - name: Build both supported package formats
+        if: inputs.product-id != 'kstruct'
         run: npm run desktop:build -- --bundles ${{ matrix.bundles }} --config .openstruct-release-config.json
         env:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.tauri-signing-key }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.tauri-signing-password }}
           APPIMAGE_EXTRACT_AND_RUN: '1'
+      - name: Build KStruct with pinned OOFEM
+        if: inputs.product-id == 'kstruct'
+        env:
+          KSTRUCT_OOFEM_WINDOWS_GENERATOR: Visual Studio 18 2026
+        run: npm run desktop:build -- --bundles ${{ runner.os == 'Linux' && 'deb,appimage' || 'nsis' }}
+      - name: Verify numerical benchmarks on the packaged KStruct engine
+        if: inputs.product-id == 'kstruct'
+        shell: pwsh
+        run: |
+          $name = if ($IsWindows) { 'oofem.exe' } else { 'oofem' }
+          $env:OOFEM_BIN = (Resolve-Path ".oofem-dist/build/bin/$name").Path
+          npm test
+      - name: Install and test KStruct Linux packages offline
+        if: inputs.product-id == 'kstruct' && runner.os == 'Linux'
+        run: bash scripts/smoke-linux.sh
+      - name: Install and test KStruct Windows package offline
+        if: inputs.product-id == 'kstruct' && runner.os == 'Windows'
+        run: ./scripts/smoke-windows.ps1
       - run: node .openstruct-tools/scripts/distribution/collect.mjs
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
